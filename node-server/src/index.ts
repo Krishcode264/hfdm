@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 app.use(
   cors({
-    origin:["http://localhost:3000","https://vercel.hdfm.app"],
+    origin: ["http://localhost:3000", "https://hfdm-ten.vercel.app"],
     credentials: true,
   })
 );
