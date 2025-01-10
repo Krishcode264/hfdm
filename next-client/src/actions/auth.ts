@@ -1,3 +1,4 @@
+
 import Api from "@/lib/axios";
 
 export const authenticate = async (email: string, password: string) => {
@@ -8,3 +9,5 @@ export const authenticate = async (email: string, password: string) => {
     throw err;
   }
 };
+
+

@@ -1,7 +1,6 @@
 import { AxiosError, type AxiosResponse } from "axios";
 import { useState } from "react";
 
-
 interface UseApiCallProps {
   apiCall: ()=> Promise<any>;
 }

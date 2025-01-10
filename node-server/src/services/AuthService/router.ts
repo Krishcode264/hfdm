@@ -25,14 +25,8 @@ async function signin(req: Request, res: Response) {
     if (user?.password === password) {
       console.log("passward corect here ")
       const token=AuthService.generateToken(String(user._id),user.email,user.role)
-   
-      res.cookie("auth_token", token, {
-        httpOnly: true,
-        secure: true, 
-        sameSite: "none",
-        path: "/",
-      });
-      res.send({ user });
+ 
+      res.send({token});
       return
     } else {
       res.status(401).send({ message: "passward does not match " });

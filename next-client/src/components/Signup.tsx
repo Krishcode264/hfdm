@@ -9,6 +9,8 @@ import { authenticate } from "@/actions/auth";
 import { AxiosError } from "axios";
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "@/store/atoms/userAtom";
+import cookies from "js-cookie";
+
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -17,13 +19,16 @@ export default function SignInForm() {
   const router = useRouter();
   const setUser = useSetRecoilState(userAtom);
   const handleSubmit = async (e: React.FormEvent) => {
+
     e.preventDefault();
     setError("");
 
     try {
       const result = await authenticate(email, password);
-      if (result.data.user) {
-        setUser(result.data.user);
+      if (result.data.token) {
+         
+            localStorage.setItem("token", result.data.token);
+          cookies.set("token", result.data.token);
         router.refresh();
       } else {
         setError(result.data.error || "Authentication failed");
