@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
       console.log("token ui", token);
       const decode = await jose.jwtVerify(
         token.value,
-        new TextEncoder().encode(process.env.JWT_SECRET)
+        new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET)
       );
 
       decoded = decode.payload;
