@@ -4,10 +4,12 @@ import { Request, Response } from "express";
 import { authModel } from "../../db/schema/auth";
 import { AuthService } from ".";
 import { environment } from "../..";
-
+import dotenv from "dotenv"
+dotenv.config()
 const authRouter = express.Router();
 
 async function signin(req: Request, res: Response) {
+
   const { email, password } = req.body;
   console.log("getting req" , email,password)
   try {
@@ -25,9 +27,9 @@ async function signin(req: Request, res: Response) {
       const token=AuthService.generateToken(String(user._id),user.email,user.role)
    
       res.cookie("auth_token", token, {
-        secure: environment === "production",
+        secure: false,
         sameSite: "lax",
-        domain:environment === "production" ? process.env.SERVER_URL : "localhost",
+        domain: process.env.TOKEN_DOMAIN || "localhost",
       });
       res.send({ user });
       return

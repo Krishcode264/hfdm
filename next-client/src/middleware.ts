@@ -12,7 +12,7 @@ type UserRole = "Admin" | "PlanetaryStaff" | "DeliveryGuy" | "";
 export async function middleware(req: NextRequest) {
   const currentPath = req.nextUrl.pathname;
   const token = req.cookies.get("auth_token");
-
+  console.log(req.cookies)
   const userRedirects: UserRedirects = {
     Admin: "/admin",
     PlanetaryStaff: "/planetary",
@@ -20,9 +20,10 @@ export async function middleware(req: NextRequest) {
   };
   let decoded: JwtPayload | string | undefined;
   let userRole: UserRole = "";
-
+console.log("token at next js  ",token)
   try {
     if (token) {
+      console.log("env here ",process.env.NEXT_PUBLIC_JWT_SECRE);
       console.log("token ui", token);
       const decode = await jose.jwtVerify(
         token.value,
