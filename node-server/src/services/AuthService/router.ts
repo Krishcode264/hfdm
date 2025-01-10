@@ -3,6 +3,7 @@ import express from "express";
 import { Request, Response } from "express";
 import { authModel } from "../../db/schema/auth";
 import { AuthService } from ".";
+import { environment } from "../..";
 
 const authRouter = express.Router();
 
@@ -23,9 +24,11 @@ async function signin(req: Request, res: Response) {
       console.log("passward corect")
       const token=AuthService.generateToken(String(user._id),user.email,user.role)
    
-      res.cookie("auth_token",token,{
-        secure:false,
-      })
+      res.cookie("auth_token", token, {
+        secure: environment === "production",
+        sameSite: "lax",
+        domain:environment === "production" ? process.env.SERVER_URL : "localhost",
+      });
       res.send({ user });
       return
     } else {

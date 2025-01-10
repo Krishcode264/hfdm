@@ -11,6 +11,7 @@ import { patientRouter } from "./services/PatientService/router";
 import { searchRouter } from "./services/SearchService/router";
 import { Request,Response } from "express";
 dotenv.config();
+export const environment = process.env.NODE_ENV;
 const app = express();
 app.use(
   cors({
