@@ -23,7 +23,7 @@ async function signin(req: Request, res: Response) {
     }
 
     if (user?.password === password) {
-      console.log("passward corect")
+      console.log("passward corect here ")
       const token=AuthService.generateToken(String(user._id),user.email,user.role)
    
       res.cookie("auth_token", token, {
