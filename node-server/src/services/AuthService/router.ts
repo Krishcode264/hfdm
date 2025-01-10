@@ -29,6 +29,7 @@ async function signin(req: Request, res: Response) {
       res.cookie("auth_token", token, {
         secure: true,
         sameSite: "none",
+        domain: "hfdm-ten.vercel.app"
       });
       res.send({ user });
       return
