@@ -37,6 +37,6 @@ async function signin(req: Request, res: Response) {
   }
 }
 
-authRouter.use("/signin", signin);
+authRouter.post("/signin", signin);
 
 export { authRouter };

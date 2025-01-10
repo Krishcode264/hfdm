@@ -9,6 +9,7 @@ import { PassThrough } from "stream";
 import { plantryRouter } from "./services/PlantryService/router";
 import { patientRouter } from "./services/PatientService/router";
 import { searchRouter } from "./services/SearchService/router";
+import { Request,Response } from "express";
 dotenv.config();
 const app = express();
 app.use(
@@ -17,6 +18,11 @@ app.use(
     credentials: true,
   })
 );
+
+app.get("/heath",(req:Request,res:Response)=>{
+  console.log("getting req on health route")
+res.send({message:"healthy"})
+})
 app.use(express.json());
 const n="krishna"
 app.use("/auth", authRouter);
