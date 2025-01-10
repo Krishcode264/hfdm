@@ -1,6 +1,5 @@
 "use client"
 import SignInForm from "@/components/Signup";
-import useRoleRedirect from "@/hooks/route";
 
 
 export default function Home() {

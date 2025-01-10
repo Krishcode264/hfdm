@@ -3,13 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { authRouter } from "./services/AuthService/router";
 import { connectDB } from "./db/connect";
-import { authModel } from "./db/schema/auth";
-import { UserService } from "./services/UserService";
-import { PassThrough } from "stream";
 import { plantryRouter } from "./services/PlantryService/router";
 import { patientRouter } from "./services/PatientService/router";
 import { searchRouter } from "./services/SearchService/router";
-import { Request,Response } from "express";
+import { Request, Response } from "express";
 dotenv.config();
 export const environment = process.env.NODE_ENV;
 const app = express();
@@ -20,16 +17,16 @@ app.use(
   })
 );
 
-app.get("/heath",(req:Request,res:Response)=>{
-  console.log("getting req on health route")
-res.send({message:"healthy again"})
-})
+app.get("/health", (req: Request, res: Response) => {
+  console.log("getting req on health route");
+  res.send({ message: "healthy again" });
+});
 app.use(express.json());
-const n="krishna"
 app.use("/auth", authRouter);
 app.use("/patients", patientRouter);
-app.use("/plantry",plantryRouter);
-app.use("/search",searchRouter)
+app.use("/plantry", plantryRouter);
+app.use("/search", searchRouter);
+
 async function init() {
   await connectDB(process.env.MONGO_URI as string);
 

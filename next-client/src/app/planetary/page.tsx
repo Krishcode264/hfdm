@@ -1,4 +1,4 @@
-import useRoleRedirect from '@/hooks/route';
+
 import React from 'react'
 
 const page = () => {
