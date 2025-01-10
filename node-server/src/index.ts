@@ -21,7 +21,7 @@ app.use(
 
 app.get("/heath",(req:Request,res:Response)=>{
   console.log("getting req on health route")
-res.send({message:"healthy"})
+res.send({message:"healthy again"})
 })
 app.use(express.json());
 const n="krishna"
