@@ -1,5 +1,8 @@
 
+import ButtonLink from '@/components/buttonLink';
 import { PantryStaffDetailsEditable } from '@/components/pantry/panetryDetailsEditable';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 const dat={
     id: "1",
@@ -9,11 +12,11 @@ const dat={
     password: "password123",
   }
 const page = ({params}:{params:{id:string}}) => {
+ 
   return (
     <div>
-      <PantryStaffDetailsEditable
-  initialStaffData={dat}
-      />
+      <ButtonLink uri="/admin"/>
+      <PantryStaffDetailsEditable initialStaffData={dat} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 
+import ButtonLink from "@/components/buttonLink";
 import { PatientDetailsEditable } from "@/components/patient/patientDetails";
 import { PlantryStaffDetails } from "@/components/patient/plantryInfo";
 import { Button } from "@/components/ui/button";
@@ -32,14 +33,7 @@ const dummyPatientData= {
   return (
     <div className="p-4 h-full  overflow-y-scroll  relative ">
       <span>
-        <Button
-          className="sticky top-0 z-50"
-          onClick={() => {
-            router.push("/admin");
-          }}
-        >
-          go back
-        </Button>
+        <ButtonLink uri="/admin"/>
         <h1 className="text-3xl font-bold mb-6 text-center">Patient Profile</h1>
       </span>
 

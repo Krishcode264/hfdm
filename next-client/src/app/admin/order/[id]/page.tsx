@@ -1,6 +1,8 @@
+import ButtonLink from "@/components/buttonLink";
 import  { OrderDisplay } from "@/components/order/orderDetails";
 
 const page = ({ params }: { params: { id: string } }) => {
+
 const dummyOrder = {
   status: "In Transit",
   patient: {
@@ -21,7 +23,8 @@ const dummyOrder = {
 
   return (
     <div>
-      <OrderDisplay  />
+      <ButtonLink uri="/admin"/>
+      <OrderDisplay />
     </div>
   );
 };

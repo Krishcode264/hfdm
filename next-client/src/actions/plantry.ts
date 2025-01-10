@@ -1,9 +1,9 @@
 import Api from "@/lib/axios";
 
 export const postCall = (url: string, data: any) => {
-  return async function () {
+  return async function (ld?: any) {
     try {
-      const response = await Api.post(url, data);
+      const response = await Api.post(url, {...ld,...data});
       return response;
     } catch (error) {
       throw error;
@@ -12,9 +12,9 @@ export const postCall = (url: string, data: any) => {
 };
 
 export const getCall = (url: string, data: any) => {
-  return async function () {
+  return async function (ld?:any) {
     try {
-      const response = await Api.get(url, {...data});
+      const response = await Api.get(url, {...ld,...data});
       return response;
     } catch (error) {
       throw error;
