@@ -27,9 +27,10 @@ async function signin(req: Request, res: Response) {
       const token=AuthService.generateToken(String(user._id),user.email,user.role)
    
       res.cookie("auth_token", token, {
-        secure: true,
-        sameSite: "lax",
-        domain: "hfdm-ten.vercel.app"
+        httpOnly: true,
+        secure: true, 
+        sameSite: "none",
+        path: "/",
       });
       res.send({ user });
       return
