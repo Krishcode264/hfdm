@@ -25,7 +25,7 @@ export async function middleware(req: NextRequest) {
 console.log("token at next js  ",token)
   try {
     if (token) {
-      
+         console.log(token.value,"token value ")
 
       const decode = await jose.jwtVerify(
         token.value,
