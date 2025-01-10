@@ -5,7 +5,9 @@ import { authModel } from "../../db/schema/auth";
 import { AuthService } from ".";
 import { environment } from "../..";
 import dotenv from "dotenv"
+import Jwt from "jsonwebtoken";
 dotenv.config()
+
 const authRouter = express.Router();
 
 async function signin(req: Request, res: Response) {
@@ -38,6 +40,26 @@ async function signin(req: Request, res: Response) {
   }
 }
 
-authRouter.post("/signin", signin);
 
+
+async function verifyRole(req:Request,res:Response){
+const {token}=req.query
+console.log("token",req.query)
+try{
+  if( typeof token === "string" ){
+ const payload = Jwt.verify(token, process.env.JWT_SECRET as string);
+ console.log(payload, "payload ");
+ res.send({ payload });
+ return 
+  } 
+ res.status(401).send({ message: "token is not valid " });
+} catch(err){
+  console.log(err,"eror verifiyng jwt")
+  res.status(401).send({message:"error verifying jwt"})
+}
+ 
+
+}
+authRouter.post("/signin", signin);
+authRouter.get("/role",verifyRole)
 export { authRouter };
