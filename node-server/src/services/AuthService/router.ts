@@ -11,11 +11,11 @@ async function signin(req: Request, res: Response) {
   console.log("getting req" , email,password)
   try {
     if(!email || !password){
-      res.status(500).send({message:"fill all required credentials "})
+      res.status(400).send({message:"fill all required credentials "})
     }
     const user = await authModel.findOne({ email });
     if (!user) {
-      res.status(500).send({ message: "user with email does not exist" });
+      res.status(400).send({ message: "user with email does not exist" });
       return
     }
 
@@ -29,11 +29,12 @@ async function signin(req: Request, res: Response) {
       res.send({ user });
       return
     } else {
-      res.status(500).send({ message: "passward does not match " });
+      res.status(401).send({ message: "passward does not match " });
       return
     }
   } catch (err) {
-    res.status(400).send({ error: "error signin up, try again" });
+    console.log(err)
+    res.status(500).send({ error: "error signin up, try again" });
   }
 }
 
