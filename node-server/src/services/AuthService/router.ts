@@ -27,9 +27,8 @@ async function signin(req: Request, res: Response) {
       const token=AuthService.generateToken(String(user._id),user.email,user.role)
    
       res.cookie("auth_token", token, {
-        secure: false,
-        sameSite: "lax",
-        domain: process.env.TOKEN_DOMAIN || "localhost",
+        secure: true,
+        sameSite: "none",
       });
       res.send({ user });
       return

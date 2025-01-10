@@ -24,7 +24,7 @@ export default function SignInForm() {
       const result = await authenticate(email, password);
       if (result.data.user) {
         setUser(result.data.user);
-        router.push("/");
+        router.refresh();
       } else {
         setError(result.data.error || "Authentication failed");
       }

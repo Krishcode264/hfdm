@@ -40,17 +40,17 @@ console.log("token at next js  ",token)
     const publicRoutes = ["/", "/login", "/register", "/public"];
     console.log(userRole, "user role");
     if (userRole && currentPath === userRedirects[userRole]) {
-      console.log(" is this ruuning");
+     
       return NextResponse.next();
     }
 
     if (userRole && Object.keys(userRedirects).includes(userRole)) {
-      console.log(" is this ruuning");
+    
       return NextResponse.redirect(new URL(userRedirects[userRole], req.url));
     }
 
     if (publicRoutes.includes(req.nextUrl.pathname)) {
-      console.log(" is this ruuning");
+    
       return NextResponse.next();
     }
 
