@@ -26,7 +26,7 @@ console.log("token at next js  ",token)
   try {
     if (token) {
       
-      
+
       const decode = await jose.jwtVerify(
         token.value,
         new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET)
@@ -62,8 +62,8 @@ console.log("token at next js  ",token)
     }
 
     return NextResponse.next();
-  } catch {
-console.log("err at token ")
+  } catch(err) {
+console.log("err at token ",err)
    NextResponse.redirect(new URL("/", req.url));
   }
 }
